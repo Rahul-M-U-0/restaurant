@@ -177,7 +177,7 @@ class ListItem extends StatelessWidget {
         },
         child: Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.43,
           decoration: const BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
               color: Colors.grey,
@@ -248,7 +248,6 @@ class ListItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 10,
                 ),
                 child: Column(
                   children: [
@@ -290,6 +289,9 @@ class ListItem extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                   ],
                 ),
