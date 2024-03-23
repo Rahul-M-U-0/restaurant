@@ -24,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void splashscreenmethod() async {
     var sharePref = await SharedPreferences.getInstance();
     var isLoggedIn = sharePref.getString(keyEmail);
-    print(isLoggedIn);
 
     if (isLoggedIn != null) {
       Timer(const Duration(seconds: 3), () {
