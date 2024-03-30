@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables, deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:readmore/readmore.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RestaurantScreen extends StatefulWidget {
   RestaurantScreen({
@@ -24,13 +24,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   String dropdownValue = "Monday";
 
   _launchMapsUrl(latitude, longitude) async {
-    final url =
-        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+    MapsLauncher.launchCoordinates(latitude, longitude);
   }
 
   @override
@@ -69,20 +63,32 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                 image: DecorationImage(
                     image: NetworkImage(widget.img), fit: BoxFit.cover),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      widget.restaurant["name"],
-                      style: const TextStyle(
-                        fontSize: 18,
+              child: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 35,
+                        color: Colors.white,
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        widget.restaurant["name"],
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
